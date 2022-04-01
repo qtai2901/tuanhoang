@@ -105,16 +105,19 @@ error_detect_depends() {
 
 # Pre-installation settings
 pre_install_docker_compose() {
-  echo -e "[1] vt4g.com"
-  echo -e "[2] 4gviettel.shop"
-  read -p "Web đang sử dụng:" api_host
-  if [ "$api_host" == "1" ]; then
-    api_host="https://vt4g.com"
-  elif [ "$api_host" == "2" ]; then
-    api_host="https://4gviettel.shop"
-  else 
-    api_host="https://vt4g.com"
-  fi
+  #link web:
+read -p "link web:" ApiHost
+  [ -z "${ApiHost}" ] && ApiHost="0"
+  echo "-------------------------------"
+  echo "Link web: ${ApiHost}"
+  echo "-------------------------------"
+  
+  #key web:
+read -p "link web:" ApiKey
+  [ -z "${ApiKey}" ] && ApiKey="0"
+  echo "-------------------------------"
+  echo "key web: ${ApiKey}"
+  echo "-------------------------------"
 
   
   read -p " ID nút (Node_ID):" node_id
@@ -227,7 +230,8 @@ Nodes:
           ALICLOUD_ACCESS_KEY: aaa
           ALICLOUD_SECRET_KEY: bbb
 EOF
-  sed -i "s|ApiHost:.*|ApiHost: \"${api_host}\"|" ./config.yml
+  sed -i "s|ApiHost:.*|ApiHost: \"${ApiHost}\"|" ./config.yml
+  sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" ./config.yml
   sed -i "s|NodeID:.*|NodeID: ${node_id}|" ./config.yml
   sed -i "s|DeviceLimit:.*|DeviceLimit: ${DeviceLimit}|" ./config.yml
   sed -i "s|CertDomain:.*|CertDomain: \"${CertDomain}\"|" ./config.yml
