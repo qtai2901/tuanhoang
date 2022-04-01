@@ -113,7 +113,7 @@ read -p "link web:" ApiHost
   echo "-------------------------------"
   
   #key web:
-read -p "link web:" ApiKey
+read -p "key web:" ApiKey
   [ -z "${ApiKey}" ] && ApiKey="0"
   echo "-------------------------------"
   echo "key web: ${ApiKey}"
